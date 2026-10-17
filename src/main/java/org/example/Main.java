@@ -22,5 +22,6 @@ public class Main {
 
         IO.println("Saldo: " + budget.getBalance());
         IO.println("Sammanställning: " + budget.getCategorySummary());
+
     }
 }

@@ -66,4 +66,11 @@ public class BudgetManager {
 
     }
 
+    public List<Transaction> getTransactionsByType(TransactionType type){
+        //Hämtar bara transaktioner som matchar angiven typ
+        return repository.findWhere(
+                transaction -> transaction.type() == type
+        );
+    }
+
 }
