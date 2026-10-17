@@ -12,10 +12,15 @@ public class Main {
                 LocalDate.now(),
                 "Mat",
                 250,
-                TransactionType.UTGIFT
+                TransactionType.INKOMST
         );
+
+
 
         budget.addTransaction(transaction);
         IO.println(budget.getTransactions());
+
+        IO.println("Saldo: " + budget.getBalance());
+        IO.println("Sammanställning: " + budget.getCategorySummary());
     }
 }

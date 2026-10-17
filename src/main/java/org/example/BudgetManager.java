@@ -40,7 +40,7 @@ public class BudgetManager {
         return balance;
     }
 
-    public Map<String, Double> getCategorySumary() {
+    public Map<String, Double> getCategorySummary() {
 
         // Skapar en Map som lagrar kategori o tillhörande summa
         Map<String, Double> summary = new HashMap<>();
