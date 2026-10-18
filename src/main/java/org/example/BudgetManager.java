@@ -73,4 +73,11 @@ public class BudgetManager {
         );
     }
 
+    public void loadTransactions(List<Transaction> transactions){
+
+        for (Transaction transaction : transactions) {
+            addTransaction(transaction);
+        }
+    }
+
 }
