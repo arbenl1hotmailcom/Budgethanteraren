@@ -8,22 +8,20 @@ public class Main {
     static void main() {
 
         BudgetManager budget = new BudgetManager();
+        TransactionFileHandler fileHandler = new TransactionFileHandler();
 
-        Transaction transaction = new Transaction(
-                LocalDate.now(),
-                "Mat",
-                250,
-                TransactionType.INKOMST
-        );
+        // Läs in sparade transaktioner vid programstart
+        try {
+            budget.loadTransactions(fileHandler.load());
+            IO.println("Transaktionerna har lästs in!");
+        } catch (IOException | InvalidTransactionException e) {
+            IO.println("Fel vid inläsning: " + e.getMessage());
+        }
 
 
-
-        budget.addTransaction(transaction);
-        IO.println(budget.getTransactions());
-
-        IO.println("Saldo: " + budget.getBalance());
-        IO.println("Sammanställning: " + budget.getCategorySummary());
-
+        // Starta meny
+        BudgetMenu menu = new BudgetMenu(budget, fileHandler);
+        menu.start();
 
 
     }
