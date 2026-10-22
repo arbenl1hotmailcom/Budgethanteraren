@@ -4,8 +4,15 @@ import java.util.List;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
+
 
 public class BudgetManager {
+
+    private static final Logger logger =
+            Logger.getLogger(BudgetManager.class.getName());
 
     // Skapar ett objekt som kan lagra Transaction-objekt
     private Repository<Transaction> repository = new Repository<>();
@@ -14,7 +21,8 @@ public class BudgetManager {
     // Kontrollerar beloppet och sparar det
     public void addTransaction(Transaction transaction){
 
-        if(transaction.amount() <= 0){
+        if(transaction.amount() <= 0 || Double.isNaN(transaction.amount())){
+            logger.log(Level.WARNING, "Försök att lägga till ogiltigt belopp: " + transaction.amount());
             throw new InvalidTransactionException("Beloppet måste vara större än 0");
         }
         repository.add(transaction);

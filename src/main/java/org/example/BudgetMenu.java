@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class BudgetMenu {
@@ -36,7 +37,7 @@ public class BudgetMenu {
                 }
 
                 case "4" -> filterTransactions();
-                case "5" -> IO.println("Sparning kommer snart.");
+                case "5" -> saveTransactions();
 
                 case "6" -> {
                     IO.println("Programmet avslutas.");
@@ -98,6 +99,16 @@ public class BudgetMenu {
             );
 
             default -> IO.println("Ogiltigt alternativ.");
+        }
+    }
+
+    public void saveTransactions() {
+
+        try {
+            fileHandler.save(budget.getTransactions());
+            IO.println("Transaktionerna har sparats");
+        } catch (IOException e) {
+            IO.println("Kunde inte sparas: " + e.getMessage());
         }
     }
 }
